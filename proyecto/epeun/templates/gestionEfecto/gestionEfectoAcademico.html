@@ -1,0 +1,57 @@
+{% extends "./baseGestionEfecto.html" %}
+{% load static %}
+{% block title%} Gestion efecto Academico {% endblock %}
+
+{%block h2%}
+
+<h2> Gestion efecto Academico</h2>
+
+
+
+{%endblock%}
+
+{%block form%}
+
+
+<form action="/registrarEfectoAcademico/" method="POST">{%csrf_token%}
+    <div class="mb-3 py-1">
+        <label for="exampleFormControlInput1" id="labelId" class="form-label d-none">Codigo</label>
+        <input type="text" class="form-control d-none" disable value="{{idefecto.idefecto}}" id="txtId" name="txtId" required
+            readonly>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Agregar efectos</label>
+
+        <input type="text" class="form-control" maxlength="100" value="{{idefecto.tema}}" id="txtTema" name="txtTema"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+        <textarea class="form-control no-resize" required maxlength="500" id="txtDescripcion" name="txtDescripcion"
+            rows="4">{{idefecto.descripcion}}</textarea>
+
+    </div>
+    <div class="d-grid gap-2">
+        <button type="submit" class="btn btn-success btn-block text-white"> Guardar</button>
+    </div>
+</form>
+
+{%endblock%}
+
+
+{%block tbody%}
+
+{% for ef in efectos%}
+<tr>
+
+    <td class="col-2">{{ef.tema}}</td>
+    <td class="col-8">{{ef.descripcion}}</td>
+    <td class="text-center col-1"><a href="/gestionEfectoAcademico/{{ef.idefecto}} " id="btnEditar" class="btn btn-info text-white"> Editar</a></td>
+    <td class="text-center col-1"><a href="/EliminarEfectoAcademico/{{ef.idefecto}}" class="btn btn-danger"> Eliminar</a></td>
+</tr>
+{%endfor%}
+
+{%endblock%}
+
+

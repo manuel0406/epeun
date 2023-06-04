@@ -1,0 +1,72 @@
+{% extends "./baseGestionRegistro.html" %}
+
+{% block title%} Gestion Registro de Desertados por causas Academicas {% endblock %}
+
+
+
+{%block h2%}
+<h2 class="text-center"> Desertados por causas tecnológicas</h2>
+{%endblock%}
+
+{%block form%}
+<form action="/registrarDesertadosPorCausasTecnologicas/" method="POST">{%csrf_token%}
+  <div class="mb-3 py-1">
+    <label for="exampleFormControlInput1" id="labelId" class="form-label d-none">Codigo</label>
+    <input type="text" class="form-control d-none" disable value="{{idregistro.idregistro}}" id="txtIdRegistro"
+      name="txtIdRegistro" required readonly>
+  </div>
+  <div class="mb-3">
+    <!--PARA SELECCIONAR EL TIPO DE UNIVERSIDAD-->
+    <label for="exampleFormControlInput1" class="form-label"> Tipo de universidad</label>
+    <select class="form-select" aria-label="Default select example" id="selectUniversidad" name="selectUniversidad"
+      required>
+      <option value="{{idregistro.tipoU}}" selected readonly placeholder="Seleccione el tipo...">{{idregistro.tipoU}}
+      </option>
+      <option value="Pública">Pública</option>
+      <option value="Privada">Privada</option>
+    </select>
+  </div>
+<div class="mb-3">
+   <!--ENTRADA DE CANTIDAD-->
+   <label for="inputCantidad" class="form-label"> Cantidad</label>
+   <input type="number" id="txtcantidad" class="form-control" value="{{idregistro.cantidad}}" min="0"
+     aria-labelledby="AnyodHelpBlock" name="txtcantidad" required>
+   <div id="CantidadHelpBlock" class="form-text">
+     La cantidad debe de ser positiva
+   </div>
+
+</div>
+ 
+
+ <div class="mb-3">
+   <!--ENTRADA DE AÑO-->
+   <label for="inputAnyo" class="form-label"> <b>Año</b></label>
+   <input type="number" id="txtano" class="form-control" value="{{idregistro.ano}}" min="2020"
+     aria-labelledby="AnyodHelpBlock" name="txtano" required>
+   <div id="AnyoHelpBlock" class="form-text">
+     El rango de años estan entre 2020 - 2023
+   </div>
+
+ </div>
+ 
+  <div class="d-grid gap-2">
+    <button type="submit" class="btn btn-success btn-block text-white"> Guardar</button>
+  </div>
+
+</form>
+
+{%endblock%}
+
+{%block tbody%}
+{% for reg in desertadosTecnologicos%}
+<tr>
+  <td class="col-2">{{reg.tipoU}}</td>
+  <td class="col-8">{{reg.cantidad}}</td>
+  <td class="col-16">{{reg.ano}}</td>
+  <td class="text-center col-1"><a href="/gestionGraficoDeDesertadosPorCausasTecnologicas/{{reg.idregistro}}"
+      id="btnEditar" class="btn btn-info text-white"> Editar</a></td>
+  <td class="text-center col-1"><a href="/EliminarDesertadosTecnologicas/{{reg.idregistro}}" class="btn btn-danger">
+      Eliminar</a></td>
+</tr>
+{%endfor%}
+{%endblock%}

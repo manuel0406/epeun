@@ -1,0 +1,52 @@
+{% extends "./baseEfectos.html" %}
+
+{% block title%} Efecto Salud Fisica Emocional {% endblock %}
+
+{% block body%}
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<h1 class="text-center py-4"><strong>Causa Salud física y emocional</strong></h1>
+<div class="container  py-4">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            {% for ef in efectos%}
+
+            <h1 class="fw-bold">{{ef.tema}}</h1>
+            <p class="fs-4 lh-sm">{{ef.descripcion}}</p>
+            <br>
+
+            {%endfor%}
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6 mx-auto">
+            <div id="echartSa" class="echartSa bg-light py-4 ">
+
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 mx-auto">
+            <div id="echartFa" class="echartFa bg-light py-4">
+    
+            </div>
+    
+        </div>
+
+    </div>
+    
+</div>
+</div>
+
+<!--apache echart-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+
+<script src="{% static 'js/graficoDesercionSalud.js' %}"></script>
+<script src="{% static 'js/graficoFallecidos.js' %}"></script>
+
+{% endblock %}
+
+<!--TERMINADO--->

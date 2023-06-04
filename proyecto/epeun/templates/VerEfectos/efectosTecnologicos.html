@@ -1,0 +1,53 @@
+{% extends "./baseEfectos.html" %}
+
+{% block title%} Efecto Tecnologico {% endblock %}
+
+{% block body%}
+{% load static %}
+
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<h1 class="text-center py-4"><strong>Causas Tecnológicas</strong></h1>
+
+<div class="container  py-4">
+    <div class="row py-4">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            {% for ef in efectos%}
+
+            <h1 class="fw-bold">{{ef.tema}}</h1>
+            <p class="fs-4 lh-sm">{{ef.descripcion}}</p>
+            <br>
+
+            {%endfor%}
+
+        </div>
+    </div>
+
+    <div class="row py-4">
+        <div class="col-sm-12 col-md-6 col-lg-6 mx-auto ">
+            <div id="echartTec" class="echartTec bg-light  mx-auto py-4 ">
+
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 mx-auto">
+            <div id="echartRe" class="echartRe bg-light py-4">
+    
+            </div>
+    
+        </div>
+
+    </div>
+    
+</div>
+</div>
+
+<!--apache echart-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.2/echarts.min.js"></script>
+
+<script src="{% static 'js/graficoDesercionTecnologico.js' %}"></script>
+<script src="{% static 'js/graficoRecursosTecnologicos.js' %}"></script>
+
+{% endblock %}
+
+<!--TERMINADO-->
